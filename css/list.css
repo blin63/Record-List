@@ -1,0 +1,57 @@
+/*
+    CSS for list page.
+    Ver: 1.0
+    By: Brendan Lin
+*/
+/* 
+    Bottom Mobile Nav Bar Template CSS from codepen.io user. (Start)
+      By: Cesar Hernández
+      See: https://codepen.io/cesardanielhg/pen/PoogRXQ
+*/
+.mobile-bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    will-change: transform;
+    transform: translateZ(0);
+    display: flex;
+    height: 50px;
+    box-shadow: 0 -2px 5px -2px #333;
+    background-color: #fff;
+  }
+  .mobile-bottom-nav__item {
+    flex-grow: 1;
+    text-align: center;
+    font-size: 12px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .mobile-bottom-nav__item--active {
+    color: red;
+  }
+  .mobile-bottom-nav__item-content {
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* 
+    Bottom Mobile Nav Bar Template CSS from codepen.io user. (End)
+      By: Cesar Hernández
+      See: https://codepen.io/cesardanielhg/pen/PoogRXQ
+*/
+
+.card {
+    align-items: center;
+    width: 80%;
+    margin-left: 10%;
+}
+
+#title {
+    text-align: center;
+    margin-top: 10%;
+    margin-bottom: 10%;
+    font-size: 18pt;
+}
