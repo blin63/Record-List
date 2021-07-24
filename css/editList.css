@@ -1,0 +1,15 @@
+/* 
+    CSS code for editList.html and other related pages.
+    Ver: 1.0
+    By: Brendan Lin
+*/
+
+span {
+    float: left;
+    clear: left;
+    margin-left: 5%;
+}
+
+i {
+    color: black;
+}

@@ -1,0 +1,45 @@
+/*
+    CSS for addList page.
+    Ver: 1.0
+    By: Brendan Lin
+*/
+.card {
+    align-items: center;
+    width: 80%;
+    margin-left: 10%;
+    margin-top: 20%;
+}
+
+#title {
+    text-align: center;
+    margin-top: 30%;
+    margin-bottom: 10%;
+    font-size: 18pt;
+}
+
+a {
+    text-decoration: none;
+    color: #000;
+}
+
+.form-select {
+    margin-bottom: 15%;
+}
+
+#submit {
+    display: block;
+    margin-top: 10%;
+    position: relative;
+    left: 20%;
+}
+
+body {
+    background-color: whitesmoke;
+}
+
+#line {
+    background-color: gray;
+    width: 100%;
+    margin-top: 20%;
+    height: 1px;
+}
