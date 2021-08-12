@@ -25,32 +25,20 @@
 
       <div class="card">
         <div class="card-body">
+          
           <div class="mb-3">
-            <input type="text" class="form-control" id="formGroupExampleInput" placeholder="List Name">
+            <input type="text" class="form-control" id="titleName" placeholder="List Name">
           </div>
 
-          <select class="form-select" aria-label="Default select example">
+          <select class="form-select" id="select" aria-label="Default select example">
             <option selected>Select a List Type</option>
             <option value="1">Checklist</option>
             <option value="2">Regular</option>
           </select>
 
           <div class="mb-3">
-            <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="List Entry">
+            <textarea class="form-control" id="listItems" rows="3" placeholder="Enter list items. Enter a ; to create new list item"></textarea>
           </div>
-
-          <!--
-            Plus Icon used from Font Aweseome. (Start)
-            From: Font Awesome
-            See:  https://fontawesome.com/v5.15/icons/plus?style=solid
-          -->
-          <button type="button" class="btn btn-outline-secondary"><i class="fas fa-plus"></i> Add List Entry</button>
-
-          <!--
-            Plus Icon used from Font Aweseome. (End)
-            From: Font Awesome
-            See:  https://fontawesome.com/v5.15/icons/plus?style=solid
-          -->
 
           <div id="line">
             
@@ -142,6 +130,19 @@
 
     <!-- Font Awsome Kit Script -->
     <script src="https://kit.fontawesome.com/a8d08eb3e6.js" crossorigin="anonymous"></script>
+
+    <!-- Firebase Scripts -->
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.9.0/firebase-app.js"></script>
+
+    <!-- Firebase Authentication -->
+     <!-- Add Firebase products that you want to use -->
+    <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-firestore.js"></script>
+
+    <!-- Other Scripts -->
+    <script src="../js/RecordList_api.js"></script>
+    <script src="../js/addList.js"></script>
 
   </body>
 </html>
