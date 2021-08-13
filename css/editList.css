@@ -13,3 +13,8 @@ span {
 i {
     color: black;
 }
+
+#delete {
+    position: relative;
+    left: 17%;
+}

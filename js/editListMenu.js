@@ -1,10 +1,10 @@
 /**
- * Gets the user's created lists and displays the lists to view in more detail.
+ * Gets the user's created lists and displays the lists to edit.
  * Author: Brendan Lin
  * Ver: 1.0
  */
 
-$(document).ready(function () {
+ $(document).ready(function () {
     // Create the table variable w/ header
     var table = "<table class='table table-hover'><thead><tr><th scope='col'>List Name</th></tr</thead><tbody>";
 
@@ -19,7 +19,7 @@ $(document).ready(function () {
             var listData = db.collection("lists").where("uid", "==", uid).get()
                 .then(function (query) {
                     query.forEach(function (doc) {
-                        table = table + "<tr><td><a href='listDetails.html?title="+ doc.data().title +"'>" + doc.data().title + "</a></td></tr>";
+                        table = table + "<tr><td><a href='editList.html?title="+ doc.data().title +"'>" + doc.data().title + "</a></td></tr>";
                     })
                 }).then(function () {
                     //close the table
