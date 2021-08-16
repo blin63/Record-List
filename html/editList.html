@@ -40,10 +40,10 @@
     <div class="card">
       <div class="card-body">
         <div class="mb-3">
-          <input type="text" class="form-control" id="formGroupExampleInput" placeholder="List Name">
+          <input type="text" class="form-control" id="listName" placeholder="List Name">
         </div>
 
-        <select class="form-select" aria-label="Default select example">
+        <select class="form-select" id="typeSelect" aria-label="Default select example">
           <option selected>Select a List Type</option>
           <option value="1">Checklist</option>
           <option value="2">Regular</option>
@@ -57,7 +57,7 @@
           
         </div>
         
-        <input class="btn btn-primary" type="submit" id="submit" value="Update List">
+        <input class="btn btn-primary" type="button" id="update" value="Update List">
 
       </div>
     </div>
@@ -155,6 +155,7 @@
     <script src="../js/RecordList_api.js"></script>
     <script src="../js/checkAuth.js"></script>
     <script src="../js/signout.js"></script>
+    <script src="../js/editList.js"></script>
 
   </body>
 </html>
