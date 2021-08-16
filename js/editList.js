@@ -42,7 +42,12 @@ firebase.auth().onAuthStateChanged((user) => {
 
                 //append a ; after each listItem array item
                 for (let i = 1; i < getListContent.length; i++) {
-                    listItemHold = listItemHold + getListContent[i] + ";";
+                    if (i != getListContent.length - 1) {
+                        listItemHold = listItemHold + getListContent[i] + ";";
+                    } else {
+                        listItemHold = listItemHold + getListContent[i];
+                    }
+                    
                 }
 
                 //take appended listItem array and insert it into textarea
@@ -65,5 +70,53 @@ document.getElementById("delete").addEventListener("click", function() {
 
 //Update Eventlistener operation
 document.getElementById("update").addEventListener("click", function() {
+    //variables
+    var title;
+    var type;
+    var listItem = [];
+    var checkItem = [];
 
+    //get modified data from text fields in form
+    title = document.getElementById("listName").value;
+    type = document.getElementById("typeSelect").value;
+    listItem = document.getElementById("listItems").value.split(";");
+
+    //create new checkItem boolean array
+    for (let i = 0; i < listItem.length; i++) {
+        checkItem[i] = false;
+    }
+
+    //update new checkItem array from old
+    //outer for loop controls the new boolan array; inner loop checks if original data is in array and keeps selected checkmark if selected
+    for (let j = 0; j < getchecklist.length; j++) {
+        for (let k = 0; k < listItem.length; k++) {
+            //if boolean array in original was not selected (not checked), skip checking
+            if (!getchecklist[j]) {
+                break;
+            }
+
+            //if original data is still in modified list and was originally selected (checkmark), reflect that change in new boolean list at new location
+            if (getListContent[j] == listItem[k]) {
+                checkItem[k] = true;
+                break;
+            }
+        }
+    }
+
+    //call updateData function to query db
+    updateData(title, type, listItem, checkItem);
 });
+
+//sends a update query to db when update button is clicked
+function updateData(title, type, listItem, checkItem) {
+    db.collection("lists").doc(docId).update({
+        title: title,
+        type: type,
+        listItem: listItem,
+        checkItem: checkItem
+    }).then(function() {
+        setTimeout(function() {
+            window.location.replace("editListMenu.html");
+        }, 5000);
+    });
+}

@@ -26,7 +26,6 @@ $(document).ready(function () {
             // User is signed in, see docs for a list of available properties
             // https://firebase.google.com/docs/reference/js/firebase.User
             var uid = user.uid;
-            console.log(uid);
 
             //Get the List from the db
             db.collection("lists").where("uid", "==", uid).get()
