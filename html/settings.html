@@ -30,37 +30,48 @@
           <h4>Update Email</h4>
           <form>
             <div class="mb-3">
-              <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Current Email Address" required>
+              <input type="email" class="form-control" id="currentEmail" aria-describedby="emailHelp" placeholder="Current Email Address" required>
             </div>
             <div class="mb-3">
-              <input type="email" class="form-control" id="exampleInputEmail2" aria-describedby="emailHelp" placeholder="New Email Address" required>
-            </div>
-            <div class="mb-3">
-              <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" required>
+              <input type="email" class="form-control" id="newEmail" aria-describedby="emailHelp" placeholder="New Email Address" required>
             </div>
             
-            <button type="submit" class="btn btn-primary">Update Email</button>
+            <button type="button" class="btn btn-primary" id="updateEmail">Update Email</button>
           </form>
         </div>
       </div>
     </div>
+
+     <!-- Change Username Widget -->
+   <div class="card">
+    <div class="card-body">
+      <h4>Update Username</h4>
+      <form>
+        <div class="mb-3">
+          <input type="text" class="form-control" id="currentUser" placeholder="Enter Current Name">
+        </div>
+        <div class="mb-3">
+          <input type="text" class="form-control" id="newUser" placeholder="Enter New Name">
+        </div>
+
+        <button type="button" class="btn btn-primary" id="updateUsername">Update Username</button>
+      </form>
+    </div>
+  </div>
+</div>
 
     <!-- Change Password Widget -->
     <div class="card">
       <div class="card-body">
         <h4>Update Password</h4>
         <form>
-          <div class="mb-3">
-            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Current Password" required>
-          </div>
-          <div class="mb-3">
-            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="New Password" required>
-          </div>
-          <button type="submit" class="btn btn-primary">Update Password</button>
+          <button type="button" class="btn btn-primary" id="resetPassword">Send Reset Password Email</button>
         </form>
       </div>
     </div>
   </div>
+  <br/>
+  <br/>
 
     <!--
       Bottom Mobile Nav Bar Template from codepen.io user. (Start)
@@ -154,6 +165,7 @@
     <script src="../js/RecordList_api.js"></script>
     <script src="../js/checkAuth.js"></script>
     <script src="../js/signout.js"></script>
+    <script src="../js/settings.js"></script>
 
   </body>
 </html>
