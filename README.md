@@ -16,3 +16,6 @@ Ver:1.0 features:
 - Ability to create, read, update, and delete list's users create
 - Ability to update user profile data
 - Desktop and mobile phone view implemented
+
+##Hosted URL of Web App
+ https://record-list-e4aad.web.app
