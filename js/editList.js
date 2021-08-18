@@ -12,7 +12,7 @@ let getListContent = [];
 let getchecklist = [];
 
 const param = new URLSearchParams(window.location.search);
-let titleMatch = param.get("title");
+let idMatch = param.get("id");
 
 //Read the selected list data from db
 firebase.auth().onAuthStateChanged((user) => {
@@ -26,7 +26,7 @@ firebase.auth().onAuthStateChanged((user) => {
             .then(function (query) {
                 query.forEach(function (doc) {
                     //get selected doc from db
-                    if (doc.data().title == titleMatch) {
+                    if (doc.id == idMatch) {
                         docId = doc.id;
                         getTitle = doc.data().title;
                         getType = doc.data().type;

@@ -19,7 +19,7 @@
             var listData = db.collection("lists").where("uid", "==", uid).get()
                 .then(function (query) {
                     query.forEach(function (doc) {
-                        table = table + "<tr><td><a href='editList.html?title="+ doc.data().title +"'>" + doc.data().title + "</a></td></tr>";
+                        table = table + "<tr><td><a href='editList.html?id="+ doc.id +"'>" + doc.data().title + "</a></td></tr>";
                     })
                 }).then(function () {
                     //close the table

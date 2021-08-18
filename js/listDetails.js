@@ -10,15 +10,19 @@ $(document).ready(function () {
 
     //Get the title stored in the URL
     const param = new URLSearchParams(window.location.search);
-    var title = param.get("title");
+    var id = param.get("id");
 
     //Variable for list type
     var type;
 
-    //listItem array variable
-    var item = 0;
+    //Variable for title
+    var title;
 
-    $("#titleName").append(title);
+    //counter variable
+    var counter = 1;
+
+    //Checkbox array variable
+    var checkboxArr = [];
 
     //get user's uid
     firebase.auth().onAuthStateChanged((user) => {
@@ -31,31 +35,40 @@ $(document).ready(function () {
             db.collection("lists").where("uid", "==", uid).get()
                 .then(function (query) {
                     query.forEach(function (doc) {
-                        if (doc.data().title == title) {
+                        if (doc.id == id) {
 
-                            //Select List Type
-                            switch (doc.data().type) {
-                                //1: Checklist Type
-                                //2: Regular Type
-                                case "1":
-                                    type = "<input class='form-check-input' type='checkbox' value='' id='flexCheckDefault'></input>";
-                                    break;
+                            title = doc.data().title;
+                            $("#titleName").append(title);
 
-                                default:
-                                    type = 1;
-                                    break;
-                            }
+                            //Get Checkbox Array
+                            checkboxArr = doc.data().checkItem;
 
-                            doc.data().listItem.forEach(function () {
-                                table = table + "<tr><td>" + type + "</td><td>" + doc.data().listItem[item] + "</td></tr>";
-                                item++;
+                            for (let i = 0; i < checkboxArr.length; i++) {
+                                //Select List Type
+                                switch (doc.data().type) {
+                                    //1: Checklist Type
+                                    //2: Regular Type
+                                    case "1":
+                                        //Check if checkbox was previously selected before from db
+                                        if (!checkboxArr[i]) {
+                                            type = "<input class='form-check-input chkbox' type='checkbox' id='flexCheckDefault' onclick='updateCheckboxArr(" + i + ")'></input>";
+                                        } else {
+                                            type = "<input class='form-check-input chkbox' type='checkbox' id='flexCheckDefault' onclick='updateCheckboxArr(" + i + ")' checked></input>";
+                                        }    
+                                        break;
+
+                                    default:
+                                        type = counter;
+                                        break;
+                                }
 
                                 //Check if the type is a regular list
                                 if (Number.isInteger(type)) {
-                                    type++;
+                                    counter++;
                                 }
-                            });
 
+                                table = table + "<tr><td>" + type + "</td><td>" + doc.data().listItem[i] + "</td></tr>"; 
+                            }
                         }
                     })
                 }).then(function () {
@@ -68,3 +81,54 @@ $(document).ready(function () {
         }
     });
 });
+
+//Update Checkbox Array
+function updateCheckboxArr(index) {
+    console.log(index);
+    //Get the title stored in the URL
+    const param = new URLSearchParams(window.location.search);
+    var id = param.get("id");
+
+    //checkbox arr variable
+    var checkboxArr = [];
+    
+    //get the checkbox arr from db
+    firebase.auth().onAuthStateChanged((user) => {
+        if (user) {
+            var uid = user.uid;
+
+            db.collection("lists").where("uid", "==", uid).get()
+            .then(function(query) {
+                query.forEach(function (doc) {
+                    if (doc.id == id) {
+                        checkboxArr = doc.data().checkItem;
+                    }
+                })
+            }).then(function() {
+                //disable all checkboxes to allow time for db to update checkItem arr
+                for (let i = 0; i < checkboxArr.length; i++) {
+                    document.getElementsByClassName("chkbox")[i].disabled = true;
+                } 
+
+                //If Box is checked, set index to false; if box is unchecked, set index to true
+                if (checkboxArr[index]) {
+                    checkboxArr[index] = false;
+                } else {
+                    checkboxArr[index] = true;
+                }
+            }).then(function() {
+                //update query
+                db.collection("lists").doc(id).update({
+                    checkItem: checkboxArr
+                }).then(function() {
+                    //Allow all checkboxes to be active after update
+                    setTimeout(function() {
+                        for (let t = 0; t < checkboxArr.length; t++) {
+                            document.getElementsByClassName("chkbox")[t].disabled = false;
+                        }
+                    }, 3000)
+                });
+            });
+        }
+    })
+}
