@@ -24,3 +24,16 @@ a {
 body {
     background-color: whitesmoke;
 }
+
+/* Desktop View */
+@media only screen and (min-width: 1080px) {
+    .card {
+        width: 20%;
+        margin-left: 40%
+    }
+
+    #title {
+        text-align: center;
+        margin-bottom: 5%;
+    }
+}

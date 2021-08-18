@@ -47,7 +47,7 @@ firebase.auth().onAuthStateChanged((user) => {
                     } else {
                         listItemHold = listItemHold + getListContent[i];
                     }
-                    
+
                 }
 
                 //take appended listItem array and insert it into textarea
@@ -58,23 +58,29 @@ firebase.auth().onAuthStateChanged((user) => {
 });
 
 //Delete Eventlistener operation
-document.getElementById("delete").addEventListener("click", function() {
+document.getElementById("delete").addEventListener("click", function () {
     //Query db to delete selected doc from lists collection
     db.collection("lists").doc(docId).delete()
-    .then(function() {
-        setTimeout(function() {
-            window.location.replace("editListMenu.html");
-        }, 5000);
-    });
+        .then(function () {
+            setTimeout(function () {
+                window.location.replace("editListMenu.html");
+            }, 5000);
+        });
 });
 
 //Update Eventlistener operation
-document.getElementById("update").addEventListener("click", function() {
+document.getElementById("update").addEventListener("click", function () {
     //variables
     var title;
     var type;
     var listItem = [];
     var checkItem = [];
+
+    //validation variables
+    let typeError = false;
+    let titleError = false;
+    let listItemError = false;
+    let errMsg = "";
 
     //get modified data from text fields in form
     title = document.getElementById("listName").value;
@@ -103,8 +109,42 @@ document.getElementById("update").addEventListener("click", function() {
         }
     }
 
-    //call updateData function to query db
-    updateData(title, type, listItem, checkItem);
+    //Check if data is valid
+    if (type == "0") {
+        typeError = true;
+        errMsg = errMsg + "<li>Please Select a valid List Type</li>";
+    }
+
+    if (title.length == 0) {
+        titleError = true;
+        errMsg = errMsg + "<li>Please Enter a Title Name</li>";
+    }
+
+    if (listItem == "") {
+        listItemError = true;
+        errMsg = errMsg + "<li>Please Enter a Record to add to list</li>";
+    }
+
+    //Throw error msg if error is detected
+    if (typeError || titleError || listItemError) {
+        typeError = false;
+        titleError = false;
+        listItemError = false;
+
+        //Display Error Message
+        document.getElementById("errorList").innerHTML = errMsg;
+        document.getElementById("error").style.visibility = "visible";
+        errMsg = "";
+
+        //Reset all Variables
+        title = null;
+        type = null;
+        listItem = [];
+        checkItem = [];
+    } else {
+        //call updateData function to query db
+        updateData(title, type, listItem, checkItem);
+    }
 });
 
 //sends a update query to db when update button is clicked
@@ -114,8 +154,8 @@ function updateData(title, type, listItem, checkItem) {
         type: type,
         listItem: listItem,
         checkItem: checkItem
-    }).then(function() {
-        setTimeout(function() {
+    }).then(function () {
+        setTimeout(function () {
             window.location.replace("editListMenu.html");
         }, 5000);
     });

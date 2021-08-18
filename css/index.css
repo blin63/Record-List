@@ -35,3 +35,25 @@
 body {
     background-color: whitesmoke;
 }
+
+/* Desktop View */
+@media only screen and (min-width: 1080px) {
+    #title {
+        margin-top: 5%;
+    }
+
+    #title2 {
+        left: 41%;
+        margin-bottom: 0%;
+    }
+
+    #welcome {
+        margin-bottom: 5%;
+        margin-top: 5%;
+    }
+
+    .card {
+        width: 20%;
+        left: 41%;
+    }
+}

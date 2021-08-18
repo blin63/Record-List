@@ -24,3 +24,10 @@ i {
     left: 20%;
     margin-top: 10%;
 }
+
+/* Desktop View */
+@media only screen and (min-width: 1080px) {
+    #delete {
+        left: 35%;
+    }
+}
